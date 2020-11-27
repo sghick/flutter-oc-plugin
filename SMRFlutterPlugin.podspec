@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
     s.source       = { :git => 'git@github.com:sghick/flutter-oc-plugin.git' }
 
     s.subspec 'SMRFlutterPlugin' do |ss| 
-        ss.source_files = 'SMRFlutterPlugin.h'
+        ss.source_files = 'SMRFlutterPlugin/*.{h,m,c,mm}'
     end
 
     s.dependency 'Flutter'
