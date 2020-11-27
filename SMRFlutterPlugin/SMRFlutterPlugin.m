@@ -7,10 +7,10 @@
 
 #import "SMRFlutterPlugin.h"
 
-@implementation BDSFPHandler
+@implementation SMRFPHandler
 
 + (instancetype)handler {
-    BDSFPHandler *instance = [[self alloc] init];
+    SMRFPHandler *instance = [[self alloc] init];
     return instance;
 }
 
@@ -18,7 +18,7 @@
     return [target respondsToSelector:NSSelectorFromString(selectorName)];
 }
 
-+ (BOOL)performTarget:(id)target forSelectorName:(NSString *)selectorName withObject:(BDSFPHandler *)object {
++ (BOOL)performTarget:(id)target forSelectorName:(NSString *)selectorName withObject:(SMRFPHandler *)object {
     SEL selector = NSSelectorFromString(selectorName);
     BOOL response = [self canResponseTarget:target forSelectorName:selectorName];
     if (!response) {
@@ -33,7 +33,7 @@
 
 @end
 
-@implementation BDSFPMethodHandler
+@implementation SMRFPMethodHandler
 
 + (NSString *)p_methodName:(FlutterMethodCall *)call {
     if (![call.method hasSuffix:@":"]) {
@@ -43,7 +43,7 @@
 }
 
 + (BOOL)handleMethodCall:(FlutterMethodCall *)call result:(FlutterResult)result target:(id)target {
-    BDSFPMethodHandler *methodHandler = [BDSFPMethodHandler handler];
+    SMRFPMethodHandler *methodHandler = [SMRFPMethodHandler handler];
     methodHandler.call = call;
     methodHandler.result = result;
     NSString *selectorName = [self p_methodName:call];
@@ -52,7 +52,7 @@
 
 @end
 
-@implementation BDSFPEventHandler
+@implementation SMRFPEventHandler
 
 - (void)dealloc {
     NSLog(@"release event handler");
@@ -93,7 +93,7 @@
 
 + (void)registerEventChannelName:(NSString *)name
                        registrar:(NSObject<FlutterPluginRegistrar>*)registrar
-                        settings:(void (^)(BDSFPEventHandler *handler))settings{
+                        settings:(void (^)(SMRFPEventHandler *handler))settings{
     FlutterEventChannel *channel =
     [FlutterEventChannel eventChannelWithName:name
                               binaryMessenger:registrar.messenger];
@@ -101,9 +101,9 @@
 }
 + (void)registerEventChannel:(FlutterEventChannel *)channel
                    registrar:(NSObject<FlutterPluginRegistrar>*)registrar
-                    settings:(void (^)(BDSFPEventHandler *handler))settings {
+                    settings:(void (^)(SMRFPEventHandler *handler))settings {
     if (settings) {
-        BDSFPEventHandler *handler = [BDSFPEventHandler handler];
+        SMRFPEventHandler *handler = [SMRFPEventHandler handler];
         settings(handler);
         [channel setStreamHandler:handler];
     }
@@ -125,7 +125,7 @@
 #pragma mark - FlutterPlugin
 
 - (void)handleMethodCall:(FlutterMethodCall *)call result:(FlutterResult)result {
-    if (![BDSFPMethodHandler handleMethodCall:call result:result target:self]) {
+    if (![SMRFPMethodHandler handleMethodCall:call result:result target:self]) {
         result(FlutterMethodNotImplemented);
     }
 }

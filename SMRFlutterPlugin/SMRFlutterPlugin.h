@@ -9,16 +9,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BDSFPHandler : NSObject
+@interface SMRFPHandler : NSObject
 
 + (instancetype)handler;
 
 + (BOOL)canResponseTarget:(id)target forSelectorName:(NSString *)selectorName;
-+ (BOOL)performTarget:(id)target forSelectorName:(NSString *)selectorName withObject:(BDSFPHandler *)object;
++ (BOOL)performTarget:(id)target forSelectorName:(NSString *)selectorName withObject:(SMRFPHandler *)object;
 
 @end
 
-@interface BDSFPMethodHandler : BDSFPHandler
+@interface SMRFPMethodHandler : SMRFPHandler
 
 @property (strong, nonatomic) FlutterMethodCall *call;
 @property (copy  , nonatomic) FlutterResult result;
@@ -28,13 +28,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-typedef FlutterError *_Nullable(^BDSFPListen)(id arguments, FlutterEventSink events);
-typedef FlutterError *_Nullable(^BDSFPCancel)(id arguments);
+typedef FlutterError *_Nullable(^SMRFPListen)(id arguments, FlutterEventSink events);
+typedef FlutterError *_Nullable(^SMRFPCancel)(id arguments);
 
-@interface BDSFPEventHandler : BDSFPHandler<FlutterStreamHandler>
+@interface SMRFPEventHandler : SMRFPHandler<FlutterStreamHandler>
 
-@property (copy  , nonatomic) BDSFPListen onListen;
-@property (copy  , nonatomic) BDSFPCancel onCancel;
+@property (copy  , nonatomic) SMRFPListen onListen;
+@property (copy  , nonatomic) SMRFPCancel onCancel;
 
 @end
 
@@ -51,10 +51,10 @@ typedef FlutterError *_Nullable(^BDSFPCancel)(id arguments);
 /** EventChannel */
 + (void)registerEventChannelName:(NSString *)name
                        registrar:(NSObject<FlutterPluginRegistrar>*)registrar
-                        settings:(void (^)(BDSFPEventHandler *handler))settings;
+                        settings:(void (^)(SMRFPEventHandler *handler))settings;
 + (void)registerEventChannel:(FlutterEventChannel *)channel
                    registrar:(NSObject<FlutterPluginRegistrar>*)registrar
-                    settings:(void (^)(BDSFPEventHandler *handler))settings;
+                    settings:(void (^)(SMRFPEventHandler *handler))settings;
 
 /** ViewFactory */
 + (void)registerViewFactory:(NSObject<FlutterPlatformViewFactory>*)factory
