@@ -12,5 +12,7 @@ Pod::Spec.new do |s|
     s.subspec 'SMRFlutterPlugin' do |ss| 
         ss.source_files = 'SMRFlutterPlugin.h'
     end
+
+    s.dependency 'Flutter'
     
 end
