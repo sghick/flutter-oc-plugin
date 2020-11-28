@@ -91,6 +91,22 @@
     [registrar addMethodCallDelegate:delegate channel:channel];
 }
 
++ (void)registerMethodChannelName:(NSString *)name
+                        registrar:(NSObject<FlutterPluginRegistrar>*)registrar
+                           target:(id)target {
+    FlutterMethodChannel *channel =
+    [FlutterMethodChannel methodChannelWithName:name
+                                binaryMessenger:registrar.messenger];
+    [self registerMethodChannel:channel registrar:registrar target:target];
+}
++ (void)registerMethodChannel:(FlutterMethodChannel *)channel
+                    registrar:(NSObject<FlutterPluginRegistrar>*)registrar
+                       target:(id)target {
+    [channel setMethodCallHandler:^(FlutterMethodCall * _Nonnull call, FlutterResult  _Nonnull result) {
+        [SMRFPMethodHandler handleMethodCall:call result:result target:target];
+    }];
+}
+
 + (void)registerEventChannelName:(NSString *)name
                        registrar:(NSObject<FlutterPluginRegistrar>*)registrar
                         settings:(void (^)(SMRFPEventHandler *handler))settings{

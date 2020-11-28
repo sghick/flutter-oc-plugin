@@ -47,6 +47,14 @@ typedef FlutterError *_Nullable(^SMRFPCancel)(id arguments);
 + (void)registerMethodChannel:(FlutterMethodChannel *)channel
                     registrar:(NSObject<FlutterPluginRegistrar>*)registrar
                      delegate:(id<FlutterPlugin>)delegate;
+                     
+/** MethodChannel Handler */
++ (void)registerMethodChannelName:(NSString *)name
+                        registrar:(NSObject<FlutterPluginRegistrar>*)registrar
+                           target:(id)target;
++ (void)registerMethodChannel:(FlutterMethodChannel *)channel
+                    registrar:(NSObject<FlutterPluginRegistrar>*)registrar
+                       target:(id)target;
 
 /** EventChannel */
 + (void)registerEventChannelName:(NSString *)name
