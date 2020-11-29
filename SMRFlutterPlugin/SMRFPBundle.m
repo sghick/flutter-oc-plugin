@@ -39,9 +39,26 @@
     return _bundle;
 }
 
-+ (UIImage *)imageNamed:(NSString *)imageName {
++ (UIImage *)imageNamed:(NSString *)name {
+    UIImage *image = [self p_imageScaleNamed:name];
+    if (!image) {
+        image = [self p_imageNamed:name];
+    }
+    return image;
+}
+
+
++ (UIImage *)p_imageScaleNamed:(NSString *)name {
+    NSString *imageName = name;
+    if (![name hasSuffix:@"@2x"] && ![name hasSuffix:@"@3x"]) {
+        imageName = [imageName stringByAppendingFormat:@"@%@x", @(UIScreen.mainScreen.scale)];
+    }
+    return [self imageNamed:imageName];
+}
+
++ (UIImage *)p_imageNamed:(NSString *)name {
     SMRFPBundle *bundle = [SMRFPBundle bundle];
-    NSString *key = [bundle.root stringByAppendingPathComponent:imageName];
+    NSString *key = [bundle.root stringByAppendingPathComponent:name];
     if (bundle.extension && ![key.pathExtension isEqualToString:bundle.extension]) {
         key = [key stringByAppendingPathExtension:bundle.extension];
     }

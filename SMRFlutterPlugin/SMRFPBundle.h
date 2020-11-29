@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (SMRFPBundle *)bundle;
 
-+ (UIImage *)imageNamed:(NSString *)imageName;
++ (UIImage *)imageNamed:(NSString *)name;
 
 @end
 
