@@ -53,7 +53,7 @@
     if (![name hasSuffix:@"@2x"] && ![name hasSuffix:@"@3x"]) {
         imageName = [imageName stringByAppendingFormat:@"@%@x", @(UIScreen.mainScreen.scale)];
     }
-    return [self imageNamed:imageName];
+    return [self p_imageNamed:imageName];
 }
 
 + (UIImage *)p_imageNamed:(NSString *)name {
