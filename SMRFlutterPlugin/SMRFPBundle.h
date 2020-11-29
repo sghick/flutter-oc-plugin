@@ -11,7 +11,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SMRFPBundle : NSObject
 
+@property (strong, nonatomic, readonly) NSString *root;
+@property (strong, nonatomic, readonly) NSString *extension;
+
 + (void)registBundleWithRoot:(NSString *)root;
++ (void)registBundleWithRoot:(NSString *)root extension:(nullable NSString *)extension;
 
 + (SMRFPBundle *)bundle;
 
