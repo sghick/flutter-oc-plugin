@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-    s.name         = 'SMRFlutterPlugin'
+    s.name         = 'SMRFlutterPlugins'
     s.version      = '1.0.0'
     s.summary      = 'the flutter for oc plugin'
     s.authors      = { 'tinswin' => ''}
@@ -9,8 +9,8 @@ Pod::Spec.new do |s|
     s.requires_arc = true
     s.source       = { :git => 'git@github.com:sghick/flutter-oc-plugin.git' }
 
-    s.subspec 'SMRFlutterPlugin' do |ss| 
-        ss.source_files = 'SMRFlutterPlugin/*.{h,m,c,mm}'
+    s.subspec 'SMRFlutterPlugins' do |ss| 
+        ss.source_files = 'SMRFlutterPlugins/*.{h,m,c,mm}'
     end
 
     s.dependency 'Flutter'
